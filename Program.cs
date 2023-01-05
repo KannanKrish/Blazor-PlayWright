@@ -4,7 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddSmartBackend<ApplicationDbContext>();
+builder.Services.AddBlazorJwtAuthentication<Guid, ApplicationUser, ApplicationRole, ApplicationDbContext>()
+    .AddSmartBackend<ApplicationDbContext>()
+    .AddSmartUI();
+
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 

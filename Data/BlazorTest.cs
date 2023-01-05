@@ -1,9 +1,9 @@
-namespace BlazorApp;
+namespace BlazorApp.Data;
 
 [TestClass]
 public class BlazorTest : PageTest
 {
-    private static WebApplication app = null!;
+    private static WebApplication app;
 
     [AssemblyInitialize]
     public static void AssemblyInitialize2(TestContext context)
@@ -14,7 +14,7 @@ public class BlazorTest : PageTest
 
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
-            EnvironmentName = "Development",
+            EnvironmentName = Environments.Development,
             ContentRootPath = baseDir,
             WebRootPath = Path.Combine(baseDir, "wwwroot"),
             ApplicationName = "BlazorApp"
@@ -24,7 +24,9 @@ public class BlazorTest : PageTest
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
 
-        builder.Services.AddSmartBackend<ApplicationDbContext>();
+        builder.Services.AddBlazorJwtAuthentication<Guid, ApplicationUser, ApplicationRole, ApplicationDbContext>()
+            .AddSmartBackend<ApplicationDbContext>()
+            .AddSmartUI();
 
         app = builder.Build();
 
@@ -37,6 +39,7 @@ public class BlazorTest : PageTest
         app.UseRouting();
 
         app.UseSmartBackend();
+
         app.MapBlazorHub();
         app.MapFallbackToPage("/_Host");
 

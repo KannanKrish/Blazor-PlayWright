@@ -16,4 +16,12 @@ public class IndexPageTests : BlazorTest
 
         title.ShouldBe(expectedTitle);
     }
+
+    [TestMethod]
+    public async Task HealthCheckTest()
+    {
+        await Page.GotoAsync("/health");
+
+        Page.GetByText("Healthy").ShouldNotBeNull();
+    }
 }
