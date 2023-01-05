@@ -58,6 +58,7 @@ public class BlazorTest : PageTest
     public override BrowserNewContextOptions ContextOptions()
     {
         // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+        // ReSharper disable once ConstantNullCoalescingCondition
         var options = base.ContextOptions() ?? new BrowserNewContextOptions();
 
         options.BaseURL = "http://localhost:5000";
