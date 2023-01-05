@@ -3,7 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddSmartBackend<ApplicationDbContext>();
 
 var app = builder.Build();
 
@@ -16,6 +17,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSmartBackend();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
