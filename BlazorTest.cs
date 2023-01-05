@@ -17,7 +17,7 @@ public class BlazorTest : PageTest
             EnvironmentName = "Development",
             ContentRootPath = baseDir,
             WebRootPath = Path.Combine(baseDir, "wwwroot"),
-            ApplicationName = "BlazorApp",
+            ApplicationName = "BlazorApp"
         });
 
         // Add services to the container.
