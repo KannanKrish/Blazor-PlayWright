@@ -8,15 +8,11 @@ builder.Services.AddBlazorJwtAuthentication<Guid, ApplicationUser, ApplicationRo
     .AddSmartBackend<ApplicationDbContext>()
     .AddSmartUI();
 
-builder.Services.AddHealthChecks();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
+if (!app.Environment.IsDevelopment()) 
     app.UseExceptionHandler("/Error");
-}
 
 app.UseStaticFiles();
 
